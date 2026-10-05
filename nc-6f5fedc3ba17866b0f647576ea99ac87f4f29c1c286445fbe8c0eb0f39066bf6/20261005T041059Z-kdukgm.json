@@ -1,0 +1,27 @@
+{
+  "article": {
+    "title": "分享X表达：我们创作博客的理由",
+    "url": "https://0721.hk/article/essay/2026-09-28-hello"
+  },
+  "author": {
+    "avatar_url": "https://avatars.githubusercontent.com/u/186494590?v=4",
+    "id": 186494590,
+    "login": "Melorise"
+  },
+  "blog_id": "nc-6f5fedc3ba17866b0f647576ea99ac87f4f29c1c286445fbe8c0eb0f39066bf6",
+  "body_markdown": "测试",
+  "created_at": "2026-10-05T04:10:59Z",
+  "id": "20261005T041059Z-kdukgm",
+  "reply_to": null,
+  "schema_version": 1,
+  "source": {
+    "capture_mode": "opened",
+    "captured_at": "2026-10-05T04:11:12.196Z",
+    "issue_body_sha256": "f5716fdc7b2c4aeebc69f506fbd77309c27de51f9450ea634b40dfb838c33004",
+    "issue_id": 5706305736,
+    "issue_node_id": "I_kwDOU6O1K88AAAABVB9QyA",
+    "issue_number": 5,
+    "issue_url": "https://github.com/Melorise/melorise-blog-comments/issues/5",
+    "repository_id": 1403237675
+  }
+}
