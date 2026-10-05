@@ -1,0 +1,23 @@
+{
+  "author": {
+    "avatar_url": "https://avatars.githubusercontent.com/u/186494590?v=4",
+    "id": 186494590,
+    "login": "Melorise"
+  },
+  "blog_id": "nc-6f5fedc3ba17866b0f647576ea99ac87f4f29c1c286445fbe8c0eb0f39066bf6",
+  "body_markdown": "测试评论",
+  "created_at": "2026-10-05T02:57:16Z",
+  "id": "20261005T025716Z-1wybti",
+  "reply_to": null,
+  "schema_version": 1,
+  "source": {
+    "capture_mode": "opened",
+    "captured_at": "2026-10-05T02:57:27.398Z",
+    "issue_body_sha256": "3cf2f0af4bcef4b291bf24f182dca48c43545da99609e5d2ac3a194dcafc6ed0",
+    "issue_id": 5705761927,
+    "issue_node_id": "I_kwDOU6O1K88AAAABVBcEhw",
+    "issue_number": 1,
+    "issue_url": "https://github.com/Melorise/melorise-blog-comments/issues/1",
+    "repository_id": 1403237675
+  }
+}
