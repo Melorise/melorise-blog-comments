@@ -1,0 +1,15 @@
+{
+  "id": "guestbook/20261005T171148000Z-a84a8dd38b30",
+  "blog_id": "guestbook",
+  "reply_to": null,
+  "author": {
+    "login": "Melorise",
+    "avatar_url": "https://avatars.githubusercontent.com/u/186494590?v=4"
+  },
+  "created_at": "2026-10-05T17:11:48Z",
+  "body_markdown": "自言自语中......",
+  "article": {
+    "title": "留言板",
+    "url": "https://0721.hk/guestbook"
+  }
+}
