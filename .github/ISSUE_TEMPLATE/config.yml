@@ -1,0 +1,2 @@
+# The website pre-fills title/body. Do not force a YAML Issue Form.
+blank_issues_enabled: true

@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "articlePolicy": {
+    "mode": "open",
+    "disabledIds": []
+  },
+  "limits": {
+    "bodyCodepoints": 8000,
+    "bodyBytes": 32768,
+    "maxReplyDepth": 64
+  },
+  "locale": "zh-CN",
+  "site": {
+    "url": "",
+    "name": ""
+  },
+  "notifications": {
+    "enabled": false,
+    "from": "",
+    "notifyOwner": true,
+    "notifyReplies": true
+  }
+}
