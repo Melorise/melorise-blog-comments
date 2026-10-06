@@ -2,6 +2,7 @@ import { parseIssueBody, validateCommentRecord, assertArticleId } from '../core/
 import { buildIndexes, commentsEnabled } from './build-index.mjs';
 import { validatePullRequest } from './validate-comment.mjs';
 import { buildReviewPullRequest } from './review-presentation.mjs';
+import { notifyOwner } from './notify-comment.mjs';
 import { actionContext, loadDeployment, requiredRef, readRecords, ref, list, positiveInteger, inputNumber, candidateFromCommit, createCommit, recordPath, serialize, isDirectEntry, reportFailure } from './runtime.mjs';
 
 export function createCommentId(articleId, issueNumber) {
@@ -26,7 +27,7 @@ function assertReviewHead(pr, sha, id, repositoryId) {
       pr.base?.repo?.id !== repositoryId || pr.head?.repo?.id !== repositoryId) throw new Error('PR head or base changed after validation');
 }
 
-export async function runIntake({ client, event, eventName, mainCommit }) {
+export async function runIntake({ client, event, eventName, mainCommit, env = process.env, fetchImpl = globalThis.fetch }) {
   if (eventName !== 'workflow_dispatch' && (eventName !== 'issues' || event.action !== 'opened')) throw new Error('Unsupported intake event');
   const number = eventName === 'workflow_dispatch' ? inputNumber(event.inputs?.issue_number, 'Issue number') : positiveInteger(event.issue?.number, 'Issue number');
   const branch = `comment-${number}`;
@@ -94,8 +95,24 @@ export async function runIntake({ client, event, eventName, mainCommit }) {
   }
   // Conversion has succeeded; failures before this point leave the source Issue open.
   await client.request('PATCH', `${client.basePath}/issues/${number}`, { state: 'closed' });
-  return { status: 'pending', candidate, pr };
+  const result = { status: 'pending', candidate, pr };
+  if (context.settings.notifications.enabled) {
+    try {
+      result.notification = await notifyOwner({ record: candidate.record, issueNumber: number, prNumber: pr.number, context, env, fetchImpl });
+    } catch (error) {
+      const code = typeof error.code === 'string' && /^[A-Z0-9_]{1,64}$/.test(error.code) ? error.code : 'MAIL_OPERATION_FAILED';
+      result.notification = { status: 'failed', code };
+    }
+  }
+  return result;
 }
 if (isDirectEntry(import.meta.url)) {
-  actionContext().then(runIntake).then(result => process.stdout.write(`0721c intake: ${result.status}.\n`)).catch(reportFailure);
+  actionContext().then(runIntake).then(result => {
+    process.stdout.write(`0721c intake: ${result.status}.\n`);
+    if (result.notification) {
+      const { status, code, reason } = result.notification;
+      const names = { disabled: '未启用', sent: '已提交发送', skipped: '已跳过', failed: '未完成' };
+      process.stdout.write(`0721c 博主通知：${names[status] ?? status}${code ? ` (${code})` : reason ? ` (${reason})` : ''}。\n`);
+    }
+  }).catch(reportFailure);
 }

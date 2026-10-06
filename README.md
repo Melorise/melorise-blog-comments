@@ -91,4 +91,4 @@ npx 0721c upgrade --directory /path/to/comments-repository --apply
 
 网站配置要投稿的评论仓库；仓库的 `site.url` 用于生成邮件链接。本地测试可填写 `http://localhost:3000`。
 
-评论 PR 合并、索引发布后，工作流尝试发送通知。根评论通知博主；回复通知父评论作者的 GitHub 公开邮箱，未公开邮箱时跳过。发件域名需在 Resend 验证，邮件结果见发布工作流日志和 Resend 控制台。将 `notifications.enabled` 改为 `false` 可关闭。
+根评论转换为文件、生成审核 PR 后，投稿工作流通知博主，并附带审核链接。回复的 PR 合并、索引发布后，发布工作流通知父评论作者的 GitHub 公开邮箱，未公开邮箱时跳过。发件域名需在 Resend 验证，邮件结果见对应工作流日志和 Resend 控制台。将 `notifications.enabled` 改为 `false` 可关闭。

@@ -35,4 +35,6 @@ jobs:
       - name: Save candidate, create review PR, validate and close Issue
         env:
           GITHUB_TOKEN: ${{ secrets.COMMENTS_TOKEN || github.token }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          COMMENTS_OWNER_EMAIL: ${{ secrets.COMMENTS_OWNER_EMAIL }}
         run: RUNTIME_MAIN_SHA="$(git rev-parse HEAD)" node .0721c/runtime/automation/intake-comment.mjs

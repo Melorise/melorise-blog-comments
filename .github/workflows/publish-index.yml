@@ -37,5 +37,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ github.token }}
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
-          COMMENTS_OWNER_EMAIL: ${{ secrets.COMMENTS_OWNER_EMAIL }}
         run: RUNTIME_MAIN_SHA="$(git rev-parse HEAD)" node .0721c/runtime/automation/publish-index.mjs

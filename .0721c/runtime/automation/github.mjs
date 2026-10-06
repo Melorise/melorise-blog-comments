@@ -49,7 +49,7 @@ export class GitHubClient {
           Accept: 'application/vnd.github+json',
           Authorization: `Bearer ${this.token}`,
           'X-GitHub-Api-Version': API_VERSION,
-          'User-Agent': '0721c-runtime/0.3.0',
+          'User-Agent': '0721c-runtime/0.3.1',
           ...(body === undefined ? {} : { 'Content-Type': 'application/json' }),
         },
         ...(body === undefined ? {} : { body: JSON.stringify(body) }),
